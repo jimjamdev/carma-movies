@@ -24,17 +24,20 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
   const [sort, setSort] = useState('popularity');
   const [sortDirection, setSortDirection] = useState('desc');
 
+  /*
+   Dispatch our redux functions or select redux data
+   */
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector(moviesSelector);
 
+  // Fetch our movies
   const fetchMovies = useCallback(() => {
-
     const fetchUrl = async () => {
       await dispatch(
         getMovies({
           params: {
             page,
-            sort_by: sort+'.'+sortDirection
+            sort_by: sort + '.' + sortDirection,
           },
         }),
       );
@@ -42,6 +45,9 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
     fetchUrl();
   }, [dispatch, page, sort, sortDirection]);
 
+  /*
+   Toggle the sort direction and set the local state
+   */
   const toggleDirection = () => {
     if (sortDirection === 'desc') {
       return setSortDirection('asc');
@@ -50,16 +56,24 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
     }
   };
 
+  /*
+   Set the page
+   */
   const handleSetPage = (num: number) => {
     return setPage(num);
   };
 
-
+  /*
+   Re-fetch data is we update any of our state params
+   */
   useEffect(() => {
     return fetchMovies();
   }, [fetchMovies, sortDirection, page, sortDirection]);
 
-  const movies = data?.results || moviesSSR?.results
+  /*
+   Set our data to redux state or fallback to SSR data
+   */
+  const movies = data?.results || moviesSSR?.results;
 
   return (
     <main>
@@ -77,7 +91,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
       <div onClick={() => setSort('vote_count')}>vote count</div>
       {loading && 'loading...'}
       {error && error}
-      {data && data.total_results } results
+      {data && data.total_results} results
       {movies &&
         movies.map((movie) => {
           return (
