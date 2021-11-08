@@ -1,16 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { getMovies } from '~store/movies';
-
-export type IMovies = {
-  data: {
-    page: number;
-    results?: Array<any>
-    total_pages: number;
-    total_results: number;
-  };
-  loading: boolean;
-  error: string | undefined;
-};
+import { IMovies } from '~types';
 
 const initialState: IMovies = {
   data: {

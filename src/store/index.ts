@@ -1,5 +1,5 @@
 // == Export main store
-export { store } from './store';
+export { wrapper } from './store';
 export type { RootState, AppThunk } from './store';
 
 
@@ -7,5 +7,4 @@ export type { RootState, AppThunk } from './store';
 export { useAppDispatch, useAppSelector } from './hooks';
 
 // == Export store modules
-// - Movies
 export * from './movies';
