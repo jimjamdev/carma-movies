@@ -30,7 +30,9 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector(moviesSelector);
 
-  // Fetch our movies
+  /*
+   Fetch our movies
+   */
   const fetchMovies = useCallback(() => {
     const fetchUrl = async () => {
       await dispatch(
