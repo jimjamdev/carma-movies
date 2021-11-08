@@ -8,9 +8,4 @@ export { useAppDispatch, useAppSelector } from './hooks';
 
 // == Export store modules
 // - Movies
-export {
-  getMovies,
-  moviesReducer,
-  moviesSelector,
-  selectMovies,
-} from './movies';
+export * from './movies';

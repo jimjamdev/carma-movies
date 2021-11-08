@@ -20,6 +20,7 @@ const Home: NextPage = () => {
     loading,
     error,
   } = useAppSelector(moviesSelector);
+  const { results = []} = data
 
   console.log('movies', data)
 
@@ -38,8 +39,8 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         {loading && 'loading...'}
         {error && error }
-        {data &&
-          data.map((movie) => {
+        {data && !loading &&
+        results.map((movie) => {
             return movie.title;
           })}
         <h1 className={styles.title}>

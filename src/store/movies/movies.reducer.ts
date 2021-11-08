@@ -1,14 +1,24 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { getMovies } from '~store';
+import { getMovies } from '~store/movies';
 
 export type IMovies = {
-  data: Array<any> | undefined;
+  data: {
+    page: number;
+    results?: Array<any>
+    total_pages: number;
+    total_results: number;
+  };
   loading: boolean;
   error: string | undefined;
 };
 
 const initialState: IMovies = {
-  data: undefined,
+  data: {
+    page: 0,
+    results: undefined,
+    total_pages: 0,
+    total_results: 0
+  },
   loading: false,
   error: undefined,
 };
@@ -22,8 +32,8 @@ export const moviesReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.data = payload;
     })
-    .addCase(getMovies.rejected, state => {
+    .addCase(getMovies.rejected, (state, { error }) => {
       state.loading = false;
-      state.error = 'There was an error';
+      state.error = error?.message
     });
 });
