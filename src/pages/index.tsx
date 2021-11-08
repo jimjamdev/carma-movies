@@ -1,11 +1,32 @@
+import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 
 import Test from '~components/test';
+import {
+  getMovies,
+  moviesSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '~store';
+
 import styles from '~styles/Home.module.css';
 
 const Home: NextPage = () => {
+  const dispatch = useAppDispatch();
+  const {
+    data,
+    loading,
+    error,
+  } = useAppSelector(moviesSelector);
+
+  console.log('movies', data)
+
+  useEffect(() => {
+    dispatch(getMovies());
+  }, [dispatch]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -15,6 +36,12 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        {loading && 'loading...'}
+        {error && error }
+        {data &&
+          data.map((movie) => {
+            return movie.title;
+          })}
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
