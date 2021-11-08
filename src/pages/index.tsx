@@ -20,7 +20,6 @@ type IHomePage = {
 };
 
 const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
-  const [movies, setMovies] = useState(moviesSSR?.results);
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('popularity');
   const [sortDirection, setSortDirection] = useState('desc');
@@ -31,7 +30,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
   const fetchMovies = useCallback(() => {
 
     const fetchUrl = async () => {
-      const query = await dispatch(
+      await dispatch(
         getMovies({
           params: {
             page,
@@ -39,8 +38,6 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
           },
         }),
       );
-      const results = query?.payload?.results;
-      setMovies(results);
     };
     fetchUrl();
   }, [dispatch, page, sort, sortDirection]);
@@ -61,6 +58,8 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
   useEffect(() => {
     return fetchMovies();
   }, [fetchMovies, sortDirection, page, sortDirection]);
+
+  const movies = data?.results || moviesSSR?.results
 
   return (
     <main>
@@ -83,8 +82,8 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
         movies.map((movie) => {
           return (
             <div key={movie.id}>
-              {movie?.title} <strong>{movie?.vote_count}</strong>
-              {movie.poster_path && (
+              <h1>{movie?.title}</h1> <strong>{movie?.vote_count}</strong>
+              {movie?.poster_path && (
                 <Image
                   src={`${config.imagePath}/w500${movie.poster_path}`}
                   alt={movie.title}
