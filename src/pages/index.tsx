@@ -26,11 +26,11 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
   const [sortDirection, setSortDirection] = useState('desc');
 
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector(moviesSelector);
+  const { data, loading, error } = useAppSelector(moviesSelector);
 
   const fetchMovies = useCallback(() => {
 
-    const sortBy = `${sort}${`.`}{${sortDirection}`
+    const sortBy = sort+'.'+sortDirection
 
     const fetchUrl = async () => {
       const query = await dispatch(
@@ -59,20 +59,10 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
     return setPage(num);
   };
 
-  // console.log('moviesSSR', moviesSSR?.results);
 
   useEffect(() => {
     return fetchMovies();
   }, [fetchMovies, sortDirection, page, sortDirection]);
-
-  console.log(
-    'page',
-    page,
-    'sort',
-    sort,
-    'sortDir',
-    sortDirection,
-  );
 
   return (
     <main>
@@ -85,13 +75,17 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
       <button onClick={() => handleSetPage(1)}>1</button>
       <button onClick={() => handleSetPage(2)}>2</button>
       <button onClick={() => handleSetPage(3)}>3</button>
+      <div onClick={() => setSort('popularity')}>popularity</div>
+      <div onClick={() => setSort('release_date')}>release date</div>
+      <div onClick={() => setSort('vote_count')}>vote count</div>
       {loading && 'loading...'}
       {error && error}
+      {data && data.total_results } results
       {movies &&
         movies.map((movie) => {
           return (
-            <div key={movie.title}>
-              {movie?.title}
+            <div key={movie.id}>
+              {movie?.title} <strong>{movie?.vote_count}</strong>
               {movie.poster_path && (
                 <Image
                   src={`${config.imagePath}/w500${movie.poster_path}`}
@@ -110,7 +104,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     /* We want the fetch on the server for SEO and page load speed if required */
-    /* You can ignore this if it's a backend app behind a login and instead, use */
+    /* You can ignore this if it's a backend app behind a login and instead, delete this, then */
     /*
   useEffect(() => {
     fetchMovies();
