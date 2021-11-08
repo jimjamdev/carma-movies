@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -26,18 +26,26 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
   const [sortDirection, setSortDirection] = useState('desc');
 
   const dispatch = useAppDispatch();
-  const { data, loading, error } = useAppSelector(moviesSelector);
+  const { loading, error } = useAppSelector(moviesSelector);
 
-  const fetchMovies = () => {
-    dispatch(
-      getMovies({
-        params: {
-          page,
-          sort_by: `${sort}.{${sortDirection}`,
-        },
-      }),
-    );
-  };
+  const fetchMovies = useCallback(() => {
+
+    const sortBy = `${sort}${`.`}{${sortDirection}`
+
+    const fetchUrl = async () => {
+      const query = await dispatch(
+        getMovies({
+          params: {
+            page,
+            sort_by: sortBy,
+          },
+        }),
+      );
+      const results = query?.payload?.results;
+      setMovies(results);
+    };
+    fetchUrl();
+  }, [dispatch, page, sort, sortDirection]);
 
   const toggleDirection = () => {
     if (sortDirection === 'desc') {
@@ -47,19 +55,17 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
     }
   };
 
-  console.log('moviesSSR', moviesSSR?.results);
+  const handleSetPage = (num: number) => {
+    return setPage(num);
+  };
 
-  /*useEffect(() => {
-    fetchMovies();
-  }, [page, dispatch, sort, sortDirection]);*/
+  // console.log('moviesSSR', moviesSSR?.results);
 
-  /*useEffect(() => {
-    setMovies(data?.results);
-  }, [data]);*/
+  useEffect(() => {
+    return fetchMovies();
+  }, [fetchMovies, sortDirection, page, sortDirection]);
 
   console.log(
-    'data',
-    data,
     'page',
     page,
     'sort',
@@ -76,6 +82,9 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Button onClick={toggleDirection}>DESC</Button>
+      <button onClick={() => handleSetPage(1)}>1</button>
+      <button onClick={() => handleSetPage(2)}>2</button>
+      <button onClick={() => handleSetPage(3)}>3</button>
       {loading && 'loading...'}
       {error && error}
       {movies &&
@@ -104,8 +113,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
     /* You can ignore this if it's a backend app behind a login and instead, use */
     /*
   useEffect(() => {
-    dispatch(getMovies());
-  }, [dispatch]);
+    fetchMovies();
+  }, [fetchMovies]);
   */
     const req = await store.dispatch(
       getMovies({ params: { page: 1, sort_by: 'popularity.desc' } }),
