@@ -30,14 +30,12 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
 
   const fetchMovies = useCallback(() => {
 
-    const sortBy = sort+'.'+sortDirection
-
     const fetchUrl = async () => {
       const query = await dispatch(
         getMovies({
           params: {
             page,
-            sort_by: sortBy,
+            sort_by: sort+'.'+sortDirection
           },
         }),
       );
