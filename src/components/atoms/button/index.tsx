@@ -1,13 +1,17 @@
 import styled from '@emotion/styled'
+import { ColorProps, SpaceProps } from 'styled-system';
+import {
+  space,
+  color,
+  fontSize,
+  width,
+} from 'styled-system'
 
-export const Button = styled.button`
-  padding: 32px;
-  background-color: hotpink;
-  font-size: 24px;
-  border-radius: 4px;
-  color: black;
-  font-weight: bold;
-  &:hover {
-    color: white;
-  }
+export interface IButton extends SpaceProps, ColorProps {}
+
+export const Button = styled.button<IButton>`
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
 `
