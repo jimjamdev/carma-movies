@@ -13,9 +13,9 @@ $buttonMonoBackgroundColorActive: lighten($monoColor, 8) !default;
 
 /*== PRIMARY BUTTON ==*/
 /* Text */
-$buttonPrimaryTextColor: $monoColor !default;
-$buttonPrimaryTextColorHover: $monoColor !default;
-$buttonPrimaryTextColorActive: $monoColor !default;
+$buttonPrimaryTextColor: darker($secondaryColor, 10) !default;
+$buttonPrimaryTextColorHover: darker($secondaryColor, 10) !default;
+$buttonPrimaryTextColorActive: darker($secondaryColor, 10) !default;
 /* Background */
 $buttonPrimaryBackgroundColor: $primaryColor !default;
 $buttonPrimaryBackgroundColorHover: lighten($primaryColor, 5) !default;

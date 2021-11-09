@@ -1,0 +1,17 @@
+@import "../../../styles/theme";
+
+.root {
+  display: block;
+  background: $appHeaderBackgroundColor;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.transparent {
+  background: transparent !important;
+}

@@ -7,6 +7,7 @@ export interface IButton {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl',
   rounded?: boolean;
   fullWidth?: boolean;
+  className?: string;
   onClick?: () => void;
 }
 
@@ -16,9 +17,11 @@ export const Button: FunctionComponent<IButton> = ({
   size = 'md',
   rounded= true,
   fullWidth,
+  className,
   onClick,
 }) => {
-  const classNames = clsx(styles.button, {
+  const classNames = clsx(className, {
+    [styles.root]: true,
     [styles.mono]: color === `mono`,
     [styles.primary]: color === `primary`,
     [styles.secondary]: color === `secondary`,
