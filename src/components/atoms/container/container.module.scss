@@ -1,6 +1,7 @@
 @import "../../../styles/theme";
 
-.container {
+.root {
   margin: auto;
+  padding: 0 1rem;
   max-width: $containerWidth;
 }

@@ -12,7 +12,7 @@ export const Container: FunctionComponent<IContainer> = ({
   className,
 }) => {
   const classNames = clsx(className, {
-    [styles.container]: true,
+    [styles.root]: true,
   });
-  return <div className={`${classNames} ${className}`}>{children}</div>;
+  return <div className={classNames}>{children}</div>;
 };

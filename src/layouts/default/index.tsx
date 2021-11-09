@@ -6,7 +6,7 @@ import { AppHeader } from './app-header';
 import { Container } from '~components/atoms/container';
 
 export interface IDefaultLayout {
-  className: string;
+  className?: string;
 }
 
 export const DefaultLayout: FunctionComponent<IDefaultLayout> = ({ children, className }) => {
@@ -15,8 +15,8 @@ export const DefaultLayout: FunctionComponent<IDefaultLayout> = ({ children, cla
   });
   return (
     <main className={classNames}>
-      <AppHeader />
-      <Container>{children}</Container>
+      <AppHeader transparent={true} />
+      {children}
     </main>
   );
 };
