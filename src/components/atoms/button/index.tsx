@@ -1,17 +1,39 @@
-import styled from '@emotion/styled'
-import { ColorProps, SpaceProps } from 'styled-system';
-import {
-  space,
-  color,
-  fontSize,
-  width,
-} from 'styled-system'
+import { FunctionComponent } from 'react';
+import clsx from 'clsx';
+import styles from './button.module.scss';
 
-export interface IButton extends SpaceProps, ColorProps {}
+export interface IButton {
+  color?: 'mono' | 'secondary' | 'primary';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl',
+  rounded?: boolean;
+  fullWidth?: boolean;
+  onClick?: () => void;
+}
 
-export const Button = styled.button<IButton>`
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
-`
+export const Button: FunctionComponent<IButton> = ({
+  children,
+  color = 'primary',
+  size = 'md',
+  rounded= true,
+  fullWidth,
+  onClick,
+}) => {
+  const classNames = clsx(styles.button, {
+    [styles.mono]: color === `mono`,
+    [styles.primary]: color === `primary`,
+    [styles.secondary]: color === `secondary`,
+    [styles.xs]: size === `xs`,
+    [styles.sm]: size === `sm`,
+    [styles.md]: size === `md`,
+    [styles.lg]: size === `lg`,
+    [styles.xl]: size === `xl`,
+    [styles.rounded]: rounded,
+    [styles.fullWidth]: fullWidth,
+  });
+
+  return (
+    <button className={classNames} onClick={onClick}>
+      {children}
+    </button>
+  );
+};
