@@ -34,6 +34,11 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
   const { data, loading, error } = useAppSelector(moviesSelector);
 
   /*
+  Set our data to redux state or fallback to SSR data
+  */
+  const movies = data?.results || moviesSSR?.results;
+
+  /*
    Fetch our movies
    */
   const fetchMovies = useCallback(() => {
@@ -75,10 +80,6 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
     return fetchMovies();
   }, [fetchMovies]);
 
-  /*
-   Set our data to redux state or fallback to SSR data
-   */
-  const movies = data?.results || moviesSSR?.results;
   const faderImages = [ movies[2] ]
   console.log('movies', movies);
 
@@ -129,7 +130,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
-    /* We want the fetch on the server for SEO and page load speed if required. This can be getStaticProps or getServerSideProps */
+    /* We want the fetch on the server for SEO and page load speed if required. */
     /* You can ignore this if it's a backend app behind a login and instead, delete this, then */
     /*
   useEffect(() => {

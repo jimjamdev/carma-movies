@@ -19,14 +19,13 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
     [styles.root]: true,
   });
 
-  const renderImages = (data?: Array<IMovie>) => {
+  const renderImages = () => {
     return (
       data &&
       data.map((value) => {
         return (
-          <div className={styles.imageWrapper}>
+          <div key={value.id} className={styles.imageWrapper}>
             <Image
-              key={value.title}
               src={`${config.imagePath}/original${value.backdrop_path}`}
               alt={value.title}
               layout="fill"
@@ -38,5 +37,5 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
     );
   };
 
-  return <div className={classNames}>{renderImages(data)}</div>;
+  return <div className={classNames}>{renderImages()}</div>;
 };
