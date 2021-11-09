@@ -15,6 +15,7 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
   data,
   className,
 }) => {
+  console.log('images', data)
   const classNames = clsx(className, {
     [styles.root]: true,
   });

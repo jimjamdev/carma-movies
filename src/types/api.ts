@@ -1,6 +1,6 @@
 export type IParams = {
-    params: {
+    params?: {
         page?: number;
         sort_by?: string;
-    }
+    } | undefined
 }

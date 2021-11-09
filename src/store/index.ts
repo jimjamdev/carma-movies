@@ -8,3 +8,4 @@ export { useAppDispatch, useAppSelector } from './hooks';
 
 // == Export store modules
 export * from './movies';
+export * from './banners';

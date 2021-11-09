@@ -1,18 +1,19 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import {createWrapper} from 'next-redux-wrapper';
+import { createWrapper } from 'next-redux-wrapper';
+import { bannersReducer } from '~store/banners';
 import { moviesReducer } from '~store/movies';
 
 export function makeStore() {
   return configureStore({
-    reducer: { movies: moviesReducer },
-    middleware: getDefaultMiddleware =>
+    reducer: { movies: moviesReducer, banners: bannersReducer },
+    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
       }),
-  })
+  });
 }
 
-const store = makeStore()
+const store = makeStore();
 
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppDispatch = typeof store.dispatch;
