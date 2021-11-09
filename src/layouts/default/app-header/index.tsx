@@ -1,6 +1,7 @@
-import Image from 'next/image';
 import { FunctionComponent } from 'react';
+import Image from 'next/image';
 import clsx from 'clsx';
+
 import { Button } from '~components/atoms/button';
 import { Container } from '~components/atoms/container';
 
