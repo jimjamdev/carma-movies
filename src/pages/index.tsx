@@ -115,7 +115,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR }) => {
   );
 };
 
-export const server = wrapper.getServerSideProps(
+export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     /* We want the fetch on the server for SEO and page load speed if required. This can be getStaticProps or getServerSideProps */
     /* You can ignore this if it's a backend app behind a login and instead, delete this, then */
