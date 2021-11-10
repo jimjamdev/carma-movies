@@ -8,7 +8,7 @@ import styles from './image-fader.module.scss';
 
 export interface IImageFader {
   data?: Array<IMovie>;
-  speed: number
+  speed?: number
   className?: string;
 }
 
