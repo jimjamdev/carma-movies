@@ -1,21 +1,45 @@
-import { FunctionComponent } from 'react';
-import Image from 'next/image';
+import { FunctionComponent, useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { config } from '~config';
 import { IMovie } from '~types';
 
+import { FaderImage } from './fader-image';
 import styles from './image-fader.module.scss';
 
 export interface IImageFader {
   data?: Array<IMovie>;
+  speed: number
   className?: string;
 }
 
 export const ImageFader: FunctionComponent<IImageFader> = ({
   data,
+  speed = 5000,
   className,
 }) => {
-  console.log('images', data)
+  const [activeImage, setActiveImage] = useState(0);
+
+  // Go the next next image or back to the start
+  const nextImage = () => {
+    const count = data?.length || 0
+    const itemsCount = count - 1
+
+    if(activeImage === itemsCount) {
+      setActiveImage(0);
+    } else {
+      setActiveImage(prev => prev + 1);
+    }
+  };
+
+
+  // Start the process onLoad
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      nextImage();
+    }, speed);
+    return () => clearTimeout(timer);
+  }, [nextImage, speed]);
+
   const classNames = clsx(className, {
     [styles.root]: true,
   });
@@ -23,16 +47,17 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
   const renderImages = () => {
     return (
       data &&
-      data.map((value) => {
+      data.map((value, index) => {
+        const isActive = index === activeImage;
         return (
-          <div key={value.id} className={styles.imageWrapper}>
-            <Image
-              src={`${config.imagePath}/original${value.backdrop_path}`}
-              alt={value.title}
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
+          <FaderImage
+            key={value.id}
+            title={value?.title}
+            label={'Some label'}
+            url={'/'}
+            active={isActive}
+            src={`${config.imagePath}/original${value.backdrop_path}`}
+          />
         );
       })
     );
