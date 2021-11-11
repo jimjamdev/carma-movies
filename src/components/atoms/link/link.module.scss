@@ -1,22 +1,25 @@
 @import "../../../styles/theme";
 
 .root {
-  a {
+ /* a {
     color: $linkColor;
+   &:link {
+     color: $linkColor;
+   }
     &:hover {
       color: $linkHoverColor;
+    }
+    &:focus {
+      color: $linkFocusColor;
     }
     &:active {
       color: $linkActiveColor;
     }
     &:visited {
       color: $linkVisitedColor;
-      &:hover {
-        color: $linkHoverColor;
-      }
-      &:active {
-        color: $linkActiveColor;
-      }
     }
   }
+  &.active a {
+    color: $linkActiveColor;
+  }*/
 }

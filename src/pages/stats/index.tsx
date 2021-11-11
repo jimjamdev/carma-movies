@@ -1,5 +1,7 @@
+import { DefaultLayout } from '~layouts/default';
+
 const StatsPage = () => {
-  return <div>stats</div>
+  return <DefaultLayout />
 }
 
 export default StatsPage

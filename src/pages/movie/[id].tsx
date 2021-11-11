@@ -1,5 +1,7 @@
+import { DefaultLayout } from '~layouts/default';
+
 const MovieDetailPage = () => {
-  return <div>detail</div>
+  return <DefaultLayout />
 }
 
 export default MovieDetailPage

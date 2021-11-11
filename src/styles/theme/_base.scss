@@ -1,4 +1,5 @@
 // Base
+@import "breakpoints";
 @import "colors";
 @import "spacing";
 @import "fonts";
@@ -10,6 +11,9 @@
 @import "filter-nav";
 @import "body";
 @import "drop-down";
+
+// Mixins
+@import "mixins/media-queries";
 
 // Templates
 @import "app-header";

@@ -1,0 +1,37 @@
+@import "../../../../styles/theme";
+
+$activeColor: red;
+
+.root {
+  padding: 0 2rem;
+}
+
+.link {
+  a.link-active {
+    color: red !important;
+    text-decoration: underline !important;
+  }
+  a {
+    &:link {
+      color: $monoColor;
+      text-decoration: none;
+    }
+    &:hover {
+      color: lighten($primaryColor, 5);
+    }
+    &:active {
+      color: $primaryColor;
+    }
+    &:focus {
+      color: lighten($primaryColor, 10);
+    }
+    &:visited  {
+      color: $monoColor;
+    }
+    //todo: fix active link not working
+    &.link-active {
+      color: red !important;
+      text-decoration: underline !important;
+    }
+  }
+}

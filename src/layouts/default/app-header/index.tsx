@@ -2,10 +2,11 @@ import { FunctionComponent } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 
-import { INavItem, Nav } from '~components/molecules/nav';
+import { INavItem } from '~components/molecules/nav';
 
 import { Button } from '~components/atoms/button';
 import { Container } from '~components/atoms/container';
+import { MainNav } from '~components/organisms/main-nav';
 
 import styles from './app-header.module.scss';
 
@@ -36,7 +37,7 @@ export const AppHeader: FunctionComponent<IAppHeader> = ({
             height={60}
           />
         </div>
-        <Nav menuItems={menuItems} vertical />
+        <MainNav menuItems={menuItems} vertical />
         <div>
           { /* Sometime we want to pass an ID for automated tests */}
           <Button size="sm" id="login-button">Login</Button>

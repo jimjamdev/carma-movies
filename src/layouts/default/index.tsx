@@ -7,9 +7,9 @@ import { AppHeader } from './app-header';
 import { AppFooter } from './app-footer';
 
 export interface IDefaultLayout {
-  menuItems: Array<INavItem>
-  banner: ReactNode | Array<ReactNode>;
-  content: ReactNode | Array<ReactNode>;
+  menuItems?: Array<INavItem>
+  banner?: ReactNode | Array<ReactNode>;
+  content?: ReactNode | Array<ReactNode>;
   className?: string;
 }
 
@@ -19,13 +19,22 @@ export const DefaultLayout: FunctionComponent<IDefaultLayout> = ({
   content,
   className,
 }) => {
+
+  /* This could come from a DB */
+  const menu: Array<INavItem> = [
+    { id: 1, text: 'Home', href: '/' },
+    { id: 2, text: 'Search', href: '/search' },
+    { id: 3, text: 'Movie Stats', href: '/stats' },
+  ];
+
+
   const classNames = clsx(className, {
     [styles.root]: true,
   });
   return (
     <main className={classNames}>
      <header className={styles.templateHeader}>
-       <AppHeader menuItems={menuItems} transparent={true} />
+       <AppHeader menuItems={menu} transparent={true} />
      </header>
       <section className={styles.templateBanner}>
         {banner}

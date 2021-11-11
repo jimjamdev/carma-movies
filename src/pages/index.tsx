@@ -2,11 +2,12 @@ import { useEffect, useState, useCallback } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { Button } from '~components/atoms/button';
+
 import { Container } from '~components/atoms/container';
-import { INavItem } from '~components/molecules/nav';
+import { Grid } from '~components/atoms/grid';
 import { FilterNav } from '~components/organisms/filter-nav';
 import { MovieBanner } from '~components/organisms/movie-banner';
+import { MovieItem } from '~components/organisms/movie-item';
 import { DefaultLayout } from '~layouts/default';
 
 import { config } from '~config';
@@ -89,52 +90,31 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
   const renderContent = () => {
     return (
       <>
-        <FilterNav />
+        <FilterNav
+          categoryChange={(item: any) => setSort(item?.value)}
+          directionChange={(item: any) => setSortDirection(item?.value)}
+        />
         <Container>
-          <Button onClick={toggleDirection}>
-            {(sortDirection === 'desc' && 'desc') || 'asc'}
-          </Button>
-          <button onClick={() => handleSetPage(1)}>1</button>
-          <button onClick={() => handleSetPage(2)}>2</button>
-          <button onClick={() => handleSetPage(3)}>3</button>
-          <div onClick={() => setSort('popularity')}>popularity</div>
-          <div onClick={() => setSort('release_date')}>release date</div>
-          <div onClick={() => setSort('vote_count')}>vote count</div>
           {loading && 'loading...'}
           {error && error}
-          {data && data.total_results} results
-          {movies &&
-            movies.map((movie) => {
-              return (
-                <div key={movie.id}>
-                  <h1>
-                    {movie?.id} {movie?.title}
-                  </h1>{' '}
-                  <strong>
-                    {movie?.vote_count} {movie?.release_date}
-                  </strong>
-                  {movie?.poster_path && (
-                    <Image
-                      src={`${config.imagePath}/w500${movie.poster_path}`}
-                      alt={movie.title}
-                      width={64}
-                      height={96}
-                    />
-                  )}
-                </div>
-              );
-            })}
+          <Grid cols={2} tabletCols={4} desktopCols={6} margin="2rem 0">
+            {movies &&
+              movies.map((movie) => {
+                return (
+                  <MovieItem
+                    key={movie.id}
+                    title={movie?.title}
+                    rating={movie?.vote_count}
+                    href={`/movie/${movie.id}`}
+                    imageUrl={`${config.imagePath}/w500${movie.poster_path}`}
+                  />
+                );
+              })}
+          </Grid>
         </Container>
       </>
     );
   };
-
-  /* This could come from a DB */
-  const menuItems:Array<INavItem> = [
-    {id: 1, text: 'Home', href: '/'},
-    {id: 2, text: 'Search', href: '/search'},
-    {id: 3, text: 'Movie Stats', href: '/stats'},
-  ]
 
   return (
     <>
@@ -145,7 +125,6 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
       </Head>
 
       <DefaultLayout
-        menuItems={menuItems}
         banner={<MovieBanner speed={6000} data={banners} />}
         content={renderContent()}
       />

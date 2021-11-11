@@ -1,5 +1,7 @@
+import { DefaultLayout } from '~layouts/default';
+
 const SearchPage = () => {
-  return <div>search</div>
+  return <DefaultLayout />
 }
 
 export default SearchPage

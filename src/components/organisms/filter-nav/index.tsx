@@ -17,13 +17,20 @@ const filterDir = [
   {name: 'Lowest', value: 'asc', href: ''},
 ]
 
-export const FilterNav: FunctionComponent = () => {
+export interface IFilterNav {
+  categoryChange: any
+  directionChange: any
+}
+
+export const FilterNav: FunctionComponent<IFilterNav> = ({ categoryChange, directionChange }) => {
   return (
     <nav className={`filter-nav ${styles.root}`}>
       <Container className={styles.container}>
-        <Heading as="h3" size="sm" transform="uppercase">Browse Movies <Text weight="medium" style="italic">By</Text></Heading>
-        <DropDown defaultItem={0} items={filterBy} onChange={(e) => console.log(e)} />
-        <DropDown defaultItem={0} items={filterDir} onChange={(e) => console.log(e)} />
+        <div className={styles.titleWrap}>
+          <Heading as="h3" size="sm" transform="uppercase">Browse Movies <Text weight="medium" style="italic">By</Text></Heading>
+        </div>
+        <DropDown defaultItem={0} items={filterBy} onChange={categoryChange} />
+        <DropDown defaultItem={0} items={filterDir} onChange={directionChange} />
       </Container>
     </nav>
   )

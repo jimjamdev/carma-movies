@@ -1,3 +1,4 @@
+import { constants } from 'os';
 import { FunctionComponent } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
@@ -11,6 +12,7 @@ export interface IFaderImage {
   title?: string;
   label?: string;
   className?: string;
+  priority: boolean;
 }
 
 export const FaderImage: FunctionComponent<IFaderImage> = ({
@@ -20,6 +22,7 @@ export const FaderImage: FunctionComponent<IFaderImage> = ({
   title,
   label,
   className,
+  priority
 }) => {
 
   const classNames = clsx(className, {
@@ -30,7 +33,7 @@ export const FaderImage: FunctionComponent<IFaderImage> = ({
   return (
     <div className={classNames}>
       <div className={styles.imageWrapper}>
-        <Image src={src} alt={title} layout="fill" objectFit="cover" />
+        <Image src={src} alt={title} layout="fill" objectFit="cover" priority={priority} />
       </div>
     </div>
   );
