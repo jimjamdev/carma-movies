@@ -1,0 +1,4 @@
+$linkColor: $primaryColor;
+$linkHoverColor: lighten($primaryColor, 10);
+$linkActiveColor: lighten($primaryColor, 20);
+$linkVisitedColor: darken($primaryColor, 10)

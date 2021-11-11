@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { config } from '~config';
 import { IMovie } from '~types';
@@ -20,6 +20,7 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
   const [activeImage, setActiveImage] = useState(0);
 
   // Go the next next image or back to the start
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const nextImage = () => {
     const count = data?.length || 0
     const itemsCount = count - 1
@@ -63,5 +64,5 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
     );
   };
 
-  return <div className={classNames}>{renderImages()}</div>;
+  return <div className={`img-fader ${classNames}`}>{renderImages()}</div>;
 };

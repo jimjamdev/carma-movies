@@ -1,0 +1,13 @@
+@import "../../../styles/theme";
+
+.root {
+  display: flex;
+  align-items: center;
+  background: $filterNavBackgroundColor;
+  min-height: 50px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}

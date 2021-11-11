@@ -1,5 +1,5 @@
-const MovieDetail = () => {
+const MovieDetailPage = () => {
   return <div>detail</div>
 }
 
-export default MovieDetail
+export default MovieDetailPage

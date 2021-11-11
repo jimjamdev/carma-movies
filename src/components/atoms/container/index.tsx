@@ -14,5 +14,5 @@ export const Container: FunctionComponent<IContainer> = ({
   const classNames = clsx(className, {
     [styles.root]: true,
   });
-  return <div className={classNames}>{children}</div>;
+  return <div className={`container ${classNames}`}>{children}</div>;
 };

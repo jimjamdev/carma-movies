@@ -1,0 +1,11 @@
+.root {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.parentItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  height: 70px;
+}

@@ -1,3 +1,24 @@
 .root {
   position: relative;
+  display: grid;
+  grid-template-areas: "header"
+                        "banner"
+                        "content"
+                        "footer";
+}
+
+.templateHeader {
+  grid-area: header;
+}
+
+.templateBanner {
+  grid-area: banner;
+}
+
+.templateContent {
+  grid-area: content;
+}
+
+.templateFooter {
+  grid-area: footer;
 }

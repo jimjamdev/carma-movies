@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import styles from './button.module.scss';
 
 export interface IButton {
+  id?: string;
   color?: 'mono' | 'secondary' | 'primary';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl',
   rounded?: boolean;
@@ -12,6 +13,7 @@ export interface IButton {
 }
 
 export const Button: FunctionComponent<IButton> = ({
+  id,
   children,
   color = 'primary',
   size = 'md',
@@ -35,7 +37,7 @@ export const Button: FunctionComponent<IButton> = ({
   });
 
   return (
-    <button className={classNames} onClick={onClick}>
+    <button id={id} className={`btn ${classNames}`} onClick={onClick}>
       {children}
     </button>
   );

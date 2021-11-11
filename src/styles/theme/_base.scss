@@ -1,7 +1,17 @@
+// Base
 @import "colors";
-@import "body";
 @import "spacing";
 @import "fonts";
+@import "link";
 @import "button";
 @import "container";
+@import "heading";
+@import "text";
+@import "filter-nav";
+@import "body";
+@import "drop-down";
+
+// Templates
 @import "app-header";
+@import "app-content";
+@import "app-footer";
