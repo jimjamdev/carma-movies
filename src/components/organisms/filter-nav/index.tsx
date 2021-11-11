@@ -13,8 +13,8 @@ const filterBy = [
 ]
 
 const filterDir = [
-  {name: 'Highest', value: 'desc', href: ''},
-  {name: 'Lowest', value: 'asc', href: ''},
+  {name: 'Asc', value: 'desc', href: ''},
+  {name: 'Desc', value: 'asc', href: ''},
 ]
 
 export interface IFilterNav {

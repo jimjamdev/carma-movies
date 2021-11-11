@@ -95,9 +95,9 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
           directionChange={(item: any) => setSortDirection(item?.value)}
         />
         <Container>
-          {loading && 'loading...'}
+          {loading && <div style={{color: 'red', fontWeight: 'bold'}}>loading...</div>}
           {error && error}
-          <Grid cols={2} tabletCols={4} desktopCols={6} margin="2rem 0">
+          <Grid cols={2} tabletCols={4} desktopCols={4} margin="2rem 0">
             {movies &&
               movies.map((movie) => {
                 return (
@@ -105,6 +105,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
                     key={movie.id}
                     title={movie?.title}
                     rating={movie?.vote_count}
+                    date={movie?.release_date}
                     href={`/movie/${movie.id}`}
                     imageUrl={`${config.imagePath}/w500${movie.poster_path}`}
                   />
