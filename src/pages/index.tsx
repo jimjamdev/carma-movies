@@ -85,7 +85,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
         <Container>
           {loading && <div style={{color: 'red', fontWeight: 'bold'}}>loading...</div>}
           {error && error}
-          <Grid cols={2} tabletCols={4} desktopCols={4} margin="2rem 0">
+          <Grid cols={2} tabletCols={3} desktopCols={4} margin="2rem 0">
             {movies &&
               movies.map((movie) => {
                 return (

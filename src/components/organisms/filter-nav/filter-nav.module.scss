@@ -14,4 +14,7 @@
 
 .titleWrap {
   padding-right: 1rem;
+  @include mq(mobile) {
+    display: none;
+  }
 }

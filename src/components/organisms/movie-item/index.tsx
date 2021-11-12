@@ -1,6 +1,6 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import clsx from 'clsx';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { FontIcon } from '~components/atoms/font-icon';
 import { Heading } from '~components/atoms/heading';
 import { Link } from '~components/atoms/link';
@@ -25,9 +25,17 @@ export const MovieItem: FunctionComponent<IMovieItem> = ({
   date,
   href,
 }) => {
+  const [imgUrl, setImgUrl] = useState(imageUrl)
+
+
   const classNames = clsx(className, {
     [styles.root]: true,
   });
+
+  const handleImageError = () => {
+    setImgUrl('/placeholder-image.jpg')
+  }
+
   return (
     <div className={`movie-item ${classNames}`}>
       <div className={styles.imageContainer}>
@@ -35,9 +43,10 @@ export const MovieItem: FunctionComponent<IMovieItem> = ({
           {/* next/image not playing nice, just want a % width and a height auto */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={imageUrl}
+            src={imgUrl}
             alt={title}
             style={{width: '100%', height: 'auto'}}
+            onError={handleImageError}
           />
         </Link>
       </div>

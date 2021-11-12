@@ -1,29 +1,27 @@
-import { useState, FormEvent, useEffect, useCallback } from 'react';
+import { useState,  useEffect, useCallback } from 'react';
 import { Container } from '~components/atoms/container';
 import { Grid } from '~components/atoms/grid';
-import { FilterNav } from '~components/organisms/filter-nav';
 import { MovieItem } from '~components/organisms/movie-item';
 import { config } from '~config';
 import { DefaultLayout } from '~layouts/default';
 import { Input } from '~components/forms/input';
 import debounce from '~lib/func/debounce';
-import { searchSelector, useAppDispatch, useAppSelector, search, getMovies } from '~store';
+import { searchSelector, useAppDispatch, useAppSelector, search, setSearchQuery } from '~store';
 
 const SearchPage = () => {
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState('popularity');
-  const [sortDirection, setSortDirection] = useState('desc');
 
   /*
    Dispatch our redux functions or select redux data
    */
   const dispatch = useAppDispatch();
-  const { data, loading, error } = useAppSelector(searchSelector);
+  const { query, data, loading, error } = useAppSelector(searchSelector);
+  console.log('query', query)
 
   const handleSearch = debounce((e: any) => {
     const value = e?.target?.value
-    setQuery(value)
+    setSearchQuery(value)
   }, 300)
 
   const searchMovies = useCallback(() => {
@@ -34,14 +32,13 @@ const SearchPage = () => {
             params: {
               query,
               page,
-              sort_by: sort + '.' + sortDirection,
             },
           }),
         );
       }
     };
     fetchUrl();
-  }, [query, dispatch, page, sort, sortDirection]);
+  }, [query, dispatch, page]);
 
   useEffect(() => {
     return searchMovies();
@@ -60,7 +57,7 @@ const SearchPage = () => {
         <Container>
           {loading && <div style={{color: 'red', fontWeight: 'bold'}}>loading...</div>}
           {error && error}
-          <Grid cols={2} tabletCols={4} desktopCols={4} margin="2rem 0">
+          <Grid cols={2} tabletCols={3} desktopCols={4} margin="2rem 0">
             {data?.results &&
             data.results.map((movie) => {
               return (

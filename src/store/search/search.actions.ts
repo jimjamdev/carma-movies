@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '~lib';
 import { IParams } from '~types';
 
@@ -8,3 +8,10 @@ export const search = createAsyncThunk('BANNERS/GET', async ({ params = {} }: IP
   });
   return response?.data
 });
+
+export const setSearchQuery = createAction('SEARCH/QUERY', function prepare(query: string) {
+  console.log('action', query)
+  return {
+    payload: query
+  }
+})
