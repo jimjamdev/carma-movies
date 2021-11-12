@@ -1,8 +1,17 @@
-import { VictoryChart, VictoryBar, VictoryAxis,VictoryTheme  } from 'victory';
+import { useEffect } from 'react';
+import { VictoryChart, VictoryBar, VictoryAxis, VictoryTheme } from 'victory';
+import { Heading } from '~components/atoms/heading';
+import { Spinner } from '~components/atoms/spinner';
 import { DefaultLayout } from '~layouts/default';
 import { Container } from '~components/atoms/container';
+import {
+  getTopTen,
+  topTenSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '~store';
 
-const data = [
+const testData = [
   { quarter: 1, earnings: 13000 },
   { quarter: 2, earnings: 16500 },
   { quarter: 3, earnings: 14250 },
@@ -10,24 +19,54 @@ const data = [
 ];
 
 const StatsPage = () => {
+  const dispatch = useAppDispatch();
+  const { data, loading, error } = useAppSelector(topTenSelector);
+
+  useEffect(() => {
+    dispatch(getTopTen({}));
+  }, [dispatch]);
+
   const renderContent = () => {
+    if (loading && !data?.results) {
+      return <Spinner />;
+    }
+
+    const results = data?.results
+    console.log('data', data)
+
     return (
       <Container>
-        <div style={{height:'50vh'}}>
-        <VictoryChart theme={VictoryTheme.material}>
-          <VictoryAxis
-            // tickValues specifies both the number of ticks and where
-            // they are placed on the axis
-            tickValues={[1, 2, 3, 4]}
-            tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-          />
-          <VictoryAxis
-            dependentAxis
-            // tickFormat specifies how ticks should be displayed
-            tickFormat={(x) => (`$${x / 1000}k`)}
-          />
-          <VictoryBar data={data} x="quarter" y="earnings" />
-        </VictoryChart>
+        <div>
+          <Heading>Ratings</Heading>
+          <VictoryChart theme={VictoryTheme.material}>
+            <VictoryAxis
+              // tickValues specifies both the number of ticks and where
+              // they are placed on the axis
+              tickValues={[1, 2, 3, 4,3, 4, 5, 6, 7, 8, 9, 10]}
+              tickFormat={(x) => x}
+            />
+            <VictoryAxis
+              dependentAxis
+              // tickFormat specifies how ticks should be displayed
+              tickFormat={(x) => `${x} Stars`}
+            />
+            <VictoryBar data={results} x="title" y="vote_average" />
+          </VictoryChart>
+          <Heading>Vote Counts</Heading>
+          <VictoryChart theme={VictoryTheme.material}>
+            <VictoryAxis
+              // tickValues specifies both the number of ticks and where
+              // they are placed on the axis
+              tickValues={[1, 2, 3, 4,3, 4, 5, 6, 7, 8, 9, 10]}
+              tickFormat={(x) => x}
+            />
+            <VictoryAxis
+              dependentAxis
+              // tickFormat specifies how ticks should be displayed
+              tickFormat={(x) => `${x} Stars`}
+            />
+            <VictoryBar data={results} x="title" y="vote_count" />
+          </VictoryChart>
         </div>
       </Container>
     );
