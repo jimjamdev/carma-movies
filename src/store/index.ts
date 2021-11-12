@@ -10,3 +10,4 @@ export { useAppDispatch, useAppSelector } from './hooks';
 export * from './movies';
 export * from './banners';
 export * from './search'
+export * from './movie'

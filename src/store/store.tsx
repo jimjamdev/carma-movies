@@ -1,12 +1,14 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 import { bannersReducer } from '~store/banners';
+import { movieReducer } from '~store/movie';
 import { moviesReducer } from '~store/movies';
 import { searchReducer } from '~store/search';
 
 export function makeStore() {
   return configureStore({
     reducer: {
+      movie: movieReducer,
       movies: moviesReducer,
       banners: bannersReducer,
       search: searchReducer,

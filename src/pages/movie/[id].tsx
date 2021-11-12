@@ -1,7 +1,46 @@
+import { NextPage } from 'next';
+import { Heading } from '~components/atoms/heading';
+import { ImageFader } from '~components/molecules/image-fader';
+import { MovieDetailInfo } from '~components/organisms/movie-detail-info';
 import { DefaultLayout } from '~layouts/default';
+import { getMovie, wrapper } from '~store';
+import { IMovie } from '~types';
 
-const MovieDetailPage = () => {
-  return <DefaultLayout />
+export interface IMoviePage {
+  id: string | number;
+  movie: IMovie;
 }
 
-export default MovieDetailPage
+const MovieDetailPage: NextPage<IMoviePage> = ({ movie }) => {
+  console.log('movie', movie)
+
+  const renderContent = () => {
+      return (
+        <>
+          <ImageFader data={[movie]} speed={10000} />
+          <MovieDetailInfo {...movie} />
+        </>
+      )
+  }
+
+  return <DefaultLayout content={renderContent()} />;
+};
+
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async ({params}) => {
+    const id = params?.id
+    const movie = await store.dispatch(
+      getMovie(id),
+    );
+
+    return {
+      props: {
+        id,
+        movie: movie?.payload
+      }
+    }
+  },
+);
+
+export default MovieDetailPage;

@@ -4,6 +4,7 @@ import Head from 'next/head';
 
 import { Container } from '~components/atoms/container';
 import { Grid } from '~components/atoms/grid';
+import { Spinner } from '~components/atoms/Spinner';
 import { FilterNav } from '~components/organisms/filter-nav';
 import { MovieBanner } from '~components/organisms/movie-banner';
 import { MovieItem } from '~components/organisms/movie-item';
@@ -44,6 +45,8 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
   const movies = data?.results || moviesSSR?.results;
   const banners = bannersSSR?.results;
 
+  console.log('banners', banners)
+
   /*
    Fetch our movies
    */
@@ -83,7 +86,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
           directionChange={(item: any) => setSortDirection(item?.value)}
         />
         <Container>
-          {loading && <div style={{color: 'red', fontWeight: 'bold'}}>loading...</div>}
+          {loading && <Spinner />}
           {error && error}
           <Grid cols={2} tabletCols={3} desktopCols={4} margin="2rem 0">
             {movies &&
@@ -122,7 +125,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
+  (store) => async (context) => {
     /* We want the fetch on the server for SEO and page load speed if required. */
     /* You can ignore this if it's a backend app behind a login and instead, delete this, then */
     /*
