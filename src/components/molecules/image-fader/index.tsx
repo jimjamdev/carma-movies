@@ -25,6 +25,8 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
     const count = data?.length || 0
     const itemsCount = count - 1
 
+    if (count === 0) return
+
     if(activeImage === itemsCount) {
       setActiveImage(0);
     } else {

@@ -1,6 +1,5 @@
-import { constants } from 'os';
 import { FunctionComponent } from 'react';
-import Image from 'next/image';
+import { Image } from '~/components/atoms/image'
 import clsx from 'clsx';
 
 import styles from './image-list.module.scss';
@@ -33,7 +32,7 @@ export const FaderImage: FunctionComponent<IFaderImage> = ({
   return (
     <div className={classNames}>
       <div className={styles.imageWrapper}>
-        <Image src={src} alt={title} layout="fill" objectFit="cover" priority={priority} />
+        <Image src={src} alt={title} />
       </div>
     </div>
   );

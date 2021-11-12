@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Container } from '~components/atoms/container';
 import { Grid } from '~components/atoms/grid';
-import { Spinner } from '~components/atoms/Spinner';
+import { Spinner } from '~components/atoms/spinner';
 import { MovieItem } from '~components/organisms/movie-item';
 import { config } from '~config';
 import { DefaultLayout } from '~layouts/default';

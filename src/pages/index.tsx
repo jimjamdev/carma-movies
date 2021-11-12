@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { Container } from '~components/atoms/container';
 import { Grid } from '~components/atoms/grid';
-import { Spinner } from '~components/atoms/Spinner';
+import { Spinner } from '~components/atoms/spinner';
 import { FilterNav } from '~components/organisms/filter-nav';
 import { MovieBanner } from '~components/organisms/movie-banner';
 import { MovieItem } from '~components/organisms/movie-item';
