@@ -11,17 +11,13 @@ export interface IFaderImage {
   title?: string;
   label?: string;
   className?: string;
-  priority: boolean;
 }
 
 export const FaderImage: FunctionComponent<IFaderImage> = ({
-  url,
   src,
   active,
   title,
-  label,
   className,
-  priority
 }) => {
 
   const classNames = clsx(className, {

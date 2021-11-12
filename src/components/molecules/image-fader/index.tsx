@@ -52,7 +52,6 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
       data &&
       data.map((value, index) => {
         const isActive = index === activeImage;
-        const isPriority = index === 0
         return (
           <FaderImage
             key={value.id}
@@ -60,7 +59,6 @@ export const ImageFader: FunctionComponent<IImageFader> = ({
             label={'Some label'}
             url={'/'}
             active={isActive}
-            priority={isPriority}
             src={`${config.imagePath}/original${value.backdrop_path}`}
           />
         );

@@ -13,17 +13,7 @@ export interface IMoviePage {
 
 const MovieDetailPage: NextPage<IMoviePage> = ({ movie }) => {
   console.log('movie', movie)
-
-  const renderContent = () => {
-      return (
-        <>
-          <ImageFader data={[movie]} speed={10000} />
-          <MovieDetailInfo {...movie} />
-        </>
-      )
-  }
-
-  return <DefaultLayout content={renderContent()} />;
+  return <DefaultLayout content={<MovieDetailInfo {...movie} fadeImages={[movie]} />} />;
 };
 
 
