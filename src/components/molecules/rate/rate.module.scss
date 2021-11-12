@@ -1,0 +1,22 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(black, 0.75);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.ratingText {
+  margin-right: 1rem;
+}
+
+.star {
+  cursor: pointer;
+  margin: 0 0.25rem;
+  &:hover {
+    color: yellow;
+  }
+}
+.starHighlighted {
+  color: yellow;
+}

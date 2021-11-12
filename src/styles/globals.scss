@@ -1,0 +1,15 @@
+@import "theme";
+
+html,body {
+  margin: 0;
+  padding: 0;
+  color: $bodyFontColor;
+  font-family: $bodyFontFamily;
+  background: $bodyBackgroundColor;
+  font-weight: $bodyFontWeight;
+  font-size: $baseFontSize;
+}
+
+*,*:before,*:after {
+  box-sizing: border-box;
+}

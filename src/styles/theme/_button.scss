@@ -1,0 +1,39 @@
+/*== BASE ==*/
+$buttonFontWeight: $fontWeightBold !default;
+$buttonTextTransform: uppercase;
+/*== MONO BUTTON ==*/
+/* Text */
+$buttonMonoTextColor: darken($monoColor, 80) !default;
+$buttonMonoTextColorHover: darken($monoColor, 90) !default;
+$buttonMonoTextColorActive: darken($monoColor, 80) !default;
+/* Background */
+$buttonMonoBackgroundColor: $monoColor !default;
+$buttonMonoBackgroundColorHover: lighten($monoColor, 5) !default;
+$buttonMonoBackgroundColorActive: lighten($monoColor, 8) !default;
+
+/*== PRIMARY BUTTON ==*/
+/* Text */
+$buttonPrimaryTextColor: darker($secondaryColor, 10) !default;
+$buttonPrimaryTextColorHover: darker($secondaryColor, 10) !default;
+$buttonPrimaryTextColorActive: darker($secondaryColor, 10) !default;
+/* Background */
+$buttonPrimaryBackgroundColor: $primaryColor !default;
+$buttonPrimaryBackgroundColorHover: lighten($primaryColor, 5) !default;
+$buttonPrimaryBackgroundColorActive: lighten($primaryColor, 8) !default;
+
+/*== SECONDARY BUTTON ==*/
+/* Text */
+$buttonSecondaryTextColor: $monoColor !default;
+$buttonSecondaryTextColorHover: $monoColor !default;
+$buttonSecondaryTextColorActive: $monoColor !default;
+/* Background */
+$buttonSecondaryBackgroundColor: $secondaryColor!default;
+$buttonSecondaryBackgroundColorHover: lighten($secondaryColor, 5) !default;
+$buttonSecondaryBackgroundColorActive: lighten($secondaryColor, 8) !default;
+
+/*== SIZES ==*/
+$buttonFontSizeSmaller: $fontSizeSmaller !default;
+$buttonFontSizeSmall: $fontSizeSmall !default;
+$buttonFontSizeMedium: $fontSizeMedium !default;
+$buttonFontSizeLarge: $fontSizeLarge !default;
+$buttonFontSizeLarger: $fontSizeLarger !default;;

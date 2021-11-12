@@ -1,0 +1,21 @@
+@import "../../../styles/theme";
+
+.root {
+  color: $secondaryColor;
+  display: flex;
+  align-items: center;
+  background: $filterNavBackgroundColor;
+  min-height: 50px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.titleWrap {
+  padding-right: 1rem;
+  @include mq(mobile) {
+    display: none;
+  }
+}

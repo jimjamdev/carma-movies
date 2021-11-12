@@ -1,0 +1,88 @@
+@import "../../../styles/theme";
+
+/*== BASE ==*/
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  font-weight: $buttonFontWeight;
+  text-transform: $buttonTextTransform;
+  padding: 0.5rem 1rem;
+}
+
+.fullWidth {
+  min-width: 100%;
+}
+
+.rounded {
+  border-radius: 500rem;
+}
+
+/*== COLORS ==*/
+.primary {
+  color: $buttonPrimaryTextColor;
+  background: $buttonPrimaryBackgroundColor;
+  &:hover {
+    color: $buttonPrimaryTextColorHover;
+    background: $buttonPrimaryBackgroundColorHover;
+  }
+  &:active {
+    color: $buttonPrimaryTextColorActive;
+    background: $buttonPrimaryBackgroundColorActive;
+  }
+}
+
+.secondary {
+  color: $buttonSecondaryTextColor;
+  background: $buttonSecondaryBackgroundColor;
+  &:hover {
+    color: $buttonSecondaryTextColorHover;
+    background: $buttonSecondaryBackgroundColorHover;
+  }
+  &:active {
+    color: $buttonSecondaryTextColorActive;
+    background: $buttonSecondaryBackgroundColorActive;
+  }
+}
+
+.mono {
+  color: $buttonMonoTextColor;
+  background: $buttonMonoBackgroundColor;
+  &:hover {
+    color: $buttonMonoTextColorHover;
+    background: $buttonMonoBackgroundColorHover;
+  }
+  &:active {
+    color: $buttonMonoTextColorActive;
+    background: $buttonMonoBackgroundColorActive;
+  }
+}
+
+/*== SIZES ==*/
+.xs {
+  font-size: $buttonFontSizeSmaller;
+  padding: 0 $spacing7;
+  height: 40px;
+}
+.sm {
+  font-size: $buttonFontSizeSmall;
+  padding: 0 $spacing7;
+  height: 30px;
+}
+.md {
+  font-size: $buttonFontSizeMedium;
+  padding: 0 $spacing7;
+  height: 40px;
+  min-width: 100px;
+}
+.lg {
+  font-size: $buttonFontSizeLarge;
+  padding: 0 $spacing7;
+  height: 40px;
+}
+.xl {
+  font-size: $buttonFontSizeLarger;
+  padding: 0 $spacing7;
+  height: 40px;
+}

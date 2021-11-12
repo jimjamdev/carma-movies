@@ -1,0 +1,11 @@
+@mixin mq($breakpoint) {
+  @if($breakpoint == mobile)  {
+    @media (max-width: $breakpointMobile) { @content }
+  }
+  @if($breakpoint == tablet)  {
+    @media (min-width: $breakpointTablet) { @content }
+  }
+  @if($breakpoint == desktop)  {
+    @media (min-width: $breakpointDesktop) { @content }
+  }
+}

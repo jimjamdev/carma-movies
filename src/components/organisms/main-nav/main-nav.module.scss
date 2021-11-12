@@ -1,0 +1,8 @@
+@import "../../../styles/theme";
+
+.root {
+  display: none;
+  @include mq(desktop) {
+    display: block;
+  }
+}

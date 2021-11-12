@@ -1,0 +1,90 @@
+@import "../../../styles/theme";
+
+.root {
+  margin: 0;
+  padding: 0;
+}
+
+// Fonts
+.primaryFont {
+  font-family: $primaryFontFamily;
+}
+
+.secondaryFont {
+  font-family: $secondaryFontFamily;
+}
+
+// colors
+
+.primaryColor {
+  color: $headingPrimaryColor;
+}
+
+.secondaryColor {
+  color: $headingPrimaryColor;
+}
+
+.monoColor {
+  color: $headingMonoColor;
+}
+
+// Sizes
+
+.xs {
+  font-size: $headingXs;
+  line-height: $headingLineHeightMd;
+}
+
+.sm {
+  font-size: $headingSm;
+  line-height: $headingLineHeightMd;
+}
+
+.md {
+  font-size: $headingMd;
+  line-height: $headingLineHeightMd;
+}
+
+.lg {
+  font-size: $headingLg;
+  line-height: $headingLineHeightMd;
+}
+
+.xl {
+  font-size: $headingXl;
+  line-height: $headingLineHeightMd;
+}
+
+// Weights
+
+.lighter {
+  font-weight: $fontWeightLighter;
+}
+.light {
+  font-weight: $fontWeightLight;
+}
+.medium {
+  font-weight: $fontWeightMedium;
+}
+.bold {
+  font-weight: $fontWeightBold;
+}
+.heavy {
+  font-weight: $fontWeightBolder;
+}
+
+// Styles
+.italic {
+  font-style: italic;
+}
+
+// Transform
+.uppercase {
+  text-transform: uppercase;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.lowercase {
+  text-transform: lowercase;
+}

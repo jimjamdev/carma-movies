@@ -1,0 +1,9 @@
+@import "../../../styles/theme";
+
+.root {
+  color: $appFooterTextColor;
+  background: $appFooterBackgroundColor;
+  min-height: 100px;
+  padding: 1rem;
+  z-index: 1;
+}

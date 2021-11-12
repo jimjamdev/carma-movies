@@ -1,0 +1,23 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.vertical {
+  ul {
+    flex-direction: column;
+  }
+}
