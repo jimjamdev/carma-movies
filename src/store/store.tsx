@@ -2,10 +2,15 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 import { bannersReducer } from '~store/banners';
 import { moviesReducer } from '~store/movies';
+import { searchReducer } from '~store/search';
 
 export function makeStore() {
   return configureStore({
-    reducer: { movies: moviesReducer, banners: bannersReducer },
+    reducer: {
+      movies: moviesReducer,
+      banners: bannersReducer,
+      search: searchReducer,
+    },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,

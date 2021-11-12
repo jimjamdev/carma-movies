@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 
 import { Container } from '~components/atoms/container';
 import { Grid } from '~components/atoms/grid';
@@ -61,17 +60,6 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
     };
     fetchUrl();
   }, [dispatch, page, sort, sortDirection]);
-
-  /*
-   Toggle the sort direction and set the local state
-   */
-  const toggleDirection = () => {
-    if (sortDirection === 'desc') {
-      return setSortDirection('asc');
-    } else {
-      return setSortDirection('desc');
-    }
-  };
 
   /*
    Set the page

@@ -2,7 +2,6 @@
 
 .root {
   display: block;
-  position: fixed;
   width: 100%;
   top: 0;
   z-index: 5;
@@ -19,4 +18,14 @@
 
 .transparent {
   background: transparent !important;
+}
+
+.positionFixed {
+  position: fixed;
+}
+.positionStatic {
+  position: static;
+}
+.positionSticky {
+  position: sticky;
 }

@@ -11,12 +11,14 @@ export interface IDefaultLayout {
   banner?: ReactNode | Array<ReactNode>;
   content?: ReactNode | Array<ReactNode>;
   className?: string;
+  headerPosition?: 'fixed' | 'sticky' | 'static'
 }
 
 export const DefaultLayout: FunctionComponent<IDefaultLayout> = ({
   menuItems,
   banner,
   content,
+  headerPosition,
   className,
 }) => {
 
@@ -34,7 +36,7 @@ export const DefaultLayout: FunctionComponent<IDefaultLayout> = ({
   return (
     <main className={classNames}>
      <header className={styles.templateHeader}>
-       <AppHeader menuItems={menu} transparent={true} />
+       <AppHeader menuItems={menu} position={headerPosition} transparent={true} />
      </header>
       <section className={styles.templateBanner}>
         {banner}

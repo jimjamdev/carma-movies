@@ -14,16 +14,21 @@ export interface IAppHeader {
   menuItems: Array<INavItem>
   transparent?: boolean;
   className?: string;
+  position?: 'fixed' | 'sticky' | 'static'
 }
 
 export const AppHeader: FunctionComponent<IAppHeader> = ({
   transparent,
   className,
+  position = 'fixed',
   menuItems
 }) => {
   const classNames = clsx(className, {
     [styles.root]: true,
     [styles.transparent]: transparent,
+    [styles.positionFixed]: position === 'fixed',
+    [styles.positionStatic]: position === 'static',
+    [styles.positionSticky]: position === 'sticky',
   });
 
   return (
