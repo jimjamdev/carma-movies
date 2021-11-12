@@ -11,3 +11,4 @@ export * from './movies';
 export * from './banners';
 export * from './search'
 export * from './movie'
+export * from './top-ten'

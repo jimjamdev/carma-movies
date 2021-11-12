@@ -4,6 +4,7 @@ import { bannersReducer } from '~store/banners';
 import { movieReducer } from '~store/movie';
 import { moviesReducer } from '~store/movies';
 import { searchReducer } from '~store/search';
+import { topTenReducer } from '~store/top-ten';
 
 export function makeStore() {
   return configureStore({
@@ -12,6 +13,7 @@ export function makeStore() {
       movies: moviesReducer,
       banners: bannersReducer,
       search: searchReducer,
+      topTen: topTenReducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
