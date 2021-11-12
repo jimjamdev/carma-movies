@@ -45,8 +45,6 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
   const movies = data?.results || moviesSSR?.results;
   const banners = bannersSSR?.results;
 
-  console.log('banners', banners)
-
   /*
    Fetch our movies
    */

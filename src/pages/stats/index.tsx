@@ -32,7 +32,6 @@ const StatsPage = () => {
     }
 
     const results = data?.results
-    console.log('data', data)
 
     return (
       <Container>

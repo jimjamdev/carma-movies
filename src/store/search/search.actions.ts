@@ -10,7 +10,6 @@ export const search = createAsyncThunk('BANNERS/GET', async ({ params = {} }: IP
 });
 
 export const setSearchQuery = createAction('SEARCH/QUERY', function prepare(query: string) {
-  console.log('action', query)
   return {
     payload: query
   }

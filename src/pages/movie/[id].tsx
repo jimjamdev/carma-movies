@@ -12,7 +12,6 @@ export interface IMoviePage {
 }
 
 const MovieDetailPage: NextPage<IMoviePage> = ({ movie }) => {
-  console.log('movie', movie)
   return <DefaultLayout content={<MovieDetailInfo {...movie} fadeImages={[movie]} />} />;
 };
 

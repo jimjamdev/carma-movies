@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Button } from '~components/atoms/button';
 import { Container } from '~components/atoms/container';
 import { Grid } from '~components/atoms/grid';
 import { Spinner } from '~components/atoms/spinner';
@@ -16,7 +17,6 @@ import {
 } from '~store';
 
 const SearchPage = () => {
-  // const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
 
   /*
@@ -24,6 +24,7 @@ const SearchPage = () => {
    */
   const dispatch = useAppDispatch();
   const { query, data, loading, error } = useAppSelector(searchSelector);
+  const { results, total_pages } = data;
 
   const handleSearch = debounce((e: any) => {
     const value = e?.target?.value;
@@ -46,13 +47,22 @@ const SearchPage = () => {
     fetchUrl();
   }, [query, dispatch, page]);
 
-  useEffect(() => {
-    return searchMovies();
-  }, [searchMovies]);
+  // Yes, this is rubbish, but I'm outta time and another meeting soon.
+  const renderPagination = () => {
+    return [...Array(total_pages)].map((item, i) => {
+      return (
+        <div style={{display: 'inline-flex', backgroundColor: 'black', margin: '0.1rem'}} key={i} onClick={(e) => {
+          e.preventDefault();
+          setPage(i)
+        }}>
+          {i}
+        </div>
+      );
+    });
+  };
 
   const renderContent = () => {
-
-    const noResults = !data?.results && !loading
+    const noResults = !data?.results && !loading;
 
     return (
       <>
@@ -65,14 +75,12 @@ const SearchPage = () => {
           onChange={handleSearch}
         />
         <Container>
-          {loading && (
-            <Spinner />
-          )}
+          {loading && <Spinner />}
           {error && error}
-          { noResults && 'Search for something placeholder...'}
+          {noResults && 'Search for something placeholder...'}
           <Grid cols={2} tabletCols={3} desktopCols={4} margin="2rem 0">
-            {data?.results &&
-              data.results.map((movie) => {
+            {results &&
+              results.map((movie) => {
                 return (
                   <MovieItem
                     key={movie.id}
@@ -85,10 +93,15 @@ const SearchPage = () => {
                 );
               })}
           </Grid>
+          {renderPagination()}
         </Container>
       </>
     );
   };
+
+  useEffect(() => {
+    return searchMovies();
+  }, [searchMovies]);
 
   return <DefaultLayout headerPosition="sticky" content={renderContent()} />;
 };

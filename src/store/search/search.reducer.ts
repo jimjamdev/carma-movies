@@ -32,7 +32,6 @@ export const searchReducer = createReducer(initialState, (builder) => {
       state.error = error?.message
     })
     .addCase(setSearchQuery, (state, action) => {
-      console.log('action', action)
       state.query = action?.payload
     })
 });
