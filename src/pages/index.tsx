@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Container } from '~components/atoms/container';
 import { Grid } from '~components/atoms/grid';
 import { Spinner } from '~components/atoms/spinner';
+import { DynamicList } from '~components/organisms/dynamic-list';
 import { FilterNav } from '~components/organisms/filter-nav';
 import { MovieBanner } from '~components/organisms/movie-banner';
 import { MovieItem } from '~components/organisms/movie-item';
@@ -29,7 +30,6 @@ type IHomePage = {
 };
 
 const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
-  const [page, setPage] = useState(1);
   const [sort, setSort] = useState('popularity');
   const [sortDirection, setSortDirection] = useState('desc');
 
@@ -38,6 +38,7 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
    */
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector(moviesSelector);
+  const { total_results } = data;
 
   /*
   Set our data to redux state or fallback to SSR data
@@ -48,33 +49,38 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
   /*
    Fetch our movies
    */
-  const fetchMovies = useCallback(() => {
-    const fetchUrl = async () => {
-      await dispatch(
-        getMovies({
-          params: {
-            page,
-            sort_by: sort + '.' + sortDirection,
-          },
-        }),
-      );
-    };
-    fetchUrl();
-  }, [dispatch, page, sort, sortDirection]);
+  const fetchMovies = useCallback(
+    (page: number = 1) => {
+      const fetchUrl = async () => {
+        await dispatch(
+          getMovies({
+            params: {
+              page,
+              sort_by: sort + '.' + sortDirection,
+            },
+          }),
+        );
+      };
+      fetchUrl();
+    },
+    [dispatch, sort, sortDirection],
+  );
 
   /*
-   Set the page
-   */
-  const handleSetPage = (num: number) => {
-    return setPage(num);
-  };
-
-  /*
-   Re-fetch data if we update any of our state params
-   */
+ Re-fetch data if we update any of our state params
+ */
   useEffect(() => {
     return fetchMovies();
   }, [fetchMovies]);
+
+  const renderData = movies?.flatMap((movie) => ({
+    id: movie?.id,
+    title: movie?.title,
+    rating: movie?.vote_count,
+    date: movie?.release_date,
+    href: `/movie/${movie?.id}`,
+    imageUrl: `${config.imagePath}/w500${movie.poster_path}`,
+  }));
 
   const renderContent = () => {
     return (
@@ -84,23 +90,19 @@ const Home: NextPage<IHomePage> = ({ moviesSSR, bannersSSR }) => {
           directionChange={(item: any) => setSortDirection(item?.value)}
         />
         <Container>
-          {loading && <Spinner />}
-          {error && error}
-          <Grid cols={2} tabletCols={3} desktopCols={4} margin="2rem 0">
-            {movies &&
-              movies.map((movie) => {
-                return (
-                  <MovieItem
-                    key={movie.id}
-                    title={movie?.title}
-                    rating={movie?.vote_count}
-                    date={movie?.release_date}
-                    href={`/movie/${movie.id}`}
-                    imageUrl={`${config.imagePath}/w500${movie.poster_path}`}
-                  />
-                );
-              })}
-          </Grid>
+          <DynamicList
+            data={renderData}
+            loading={loading}
+            fetchFunc={fetchMovies}
+            startPage={2}
+            error={error}
+            totalResults={total_results}
+            listComponent={MovieItem}
+            cols={2}
+            tabletCols={3}
+            desktopCols={4}
+            margin="2rem 0"
+          />
         </Container>
       </>
     );

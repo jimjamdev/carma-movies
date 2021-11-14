@@ -10,36 +10,47 @@
 .cols1 {
   grid-template-columns: repeat(1, 1fr);
 }
+
 .cols2 {
   grid-template-columns: repeat(2, 1fr);
 }
+
 .cols3 {
   grid-template-columns: repeat(3, 1fr);
 }
+
 .cols4 {
   grid-template-columns: repeat(4, 1fr);
 }
+
 .cols5 {
   grid-template-columns: repeat(4, 1fr);
 }
+
 .cols6 {
   grid-template-columns: repeat(4, 1fr);
 }
+
 .cols7 {
   grid-template-columns: repeat(4, 1fr);
 }
+
 .cols8 {
   grid-template-columns: repeat(4, 1fr);
 }
+
 .cols9 {
   grid-template-columns: repeat(4, 1fr);
 }
+
 .cols10 {
   grid-template-columns: repeat(4, 1fr);
 }
-.cols11{
+
+.cols11 {
   grid-template-columns: repeat(4, 1fr);
 }
+
 .cols12 {
   grid-template-columns: repeat(4, 1fr);
 }
@@ -131,7 +142,7 @@
   }
 }
 
-.desktopCols3{
+.desktopCols3 {
   @include mq(desktop) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -195,9 +206,11 @@
 .spacing1 {
   grid-gap: 0.5rem;
 }
+
 .spacing2 {
   grid-gap: 1rem;
 }
+
 .spacing3 {
   grid-gap: 1.5rem;
 }
@@ -207,11 +220,13 @@
     grid-gap: 0.5rem;
   }
 }
+
 .tabletSpacing2 {
   @include mq(tablet) {
     grid-gap: 1rem;
   }
 }
+
 .tabletSpacing3 {
   @include mq(tablet) {
     grid-gap: 1.5rem;
@@ -223,11 +238,13 @@
     grid-gap: 0.5rem;
   }
 }
+
 .desktopSpacing2 {
   @include mq(tablet) {
     grid-gap: 1rem;
   }
 }
+
 .desktopSpacing3 {
   @include mq(tablet) {
     grid-gap: 1.5rem;
